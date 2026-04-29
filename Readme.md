@@ -1,8 +1,8 @@
-# 🎟️ Concert Space: Full-Stack Reservation System
+# 🎟️ DW-Test: Full-Stack Reservation System
 
 **Developed by:** Nitinat Loruthai (Nut)  
 **Role:** Full-Stack Developer  
-**Assignment:** Full-stack Developer Recruitment Task
+**Assignment:** Full-stack developer assignment (Next.js + NestJS) 
 
 ---
 
@@ -12,7 +12,9 @@ A high-performance, responsive web application for discovering and booking conce
 
 The project is structured as a **Monorepo** to ensure seamless orchestration between the frontend and backend services.
 
-- **Frontend (Next.js 14+):** Developed with a focus on **Responsive Design** and Server-side data fetching. Styled using **Tailwind CSS** with custom HTML/CSS components to meet Figma specifications.
+- **Frontend (Next.js 16+):** Developed with a focus on
+- **Responsive Design** and Server-side data fetching. Styled using
+- **Tailwind CSS** with custom HTML/CSS components to meet Figma specifications.
 - **Backend (NestJS):** Built using a modular architecture (Controllers, Services, DTOs) for clean separation of concerns.
 - **Database (PostgreSQL):** Containerized via Docker and managed through **Prisma ORM** for type-safe database access and versioned migrations.
 - **Authentication:** Implemented **JWT-based authentication** with Role-Based Access Control (RBAC) to distinguish between `ADMIN` and `USER` roles.
@@ -66,7 +68,7 @@ This project was completed in approximately 2.5 hours of active development, dem
 
 - **14:30 - 15:30:** Frontend Responsive UI implementation and API Integration.
 
-- **15:30 - Finish:** Unit Testing, final bug fixes, and documentation.
+- **15:30 - 16:00:** Unit Testing, final bug fixes, and documentation.
 
 ### 6. Tech Stack & Libraries
 

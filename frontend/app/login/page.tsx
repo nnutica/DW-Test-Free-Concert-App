@@ -86,8 +86,19 @@ export default function LoginPage() {
       <div className="min-h-screen bg-gray-50 flex flex-col relative">
         {/* Mobile Header */}
         <div className="md:hidden bg-[#006699] text-white p-4 flex items-center justify-center relative">
-          <ChevronLeft className="absolute left-4 w-6 h-6" />
+          <button onClick={() => router.push("/")} className="absolute left-4">
+            <ChevronLeft className="w-6 h-6" />
+          </button>
           <h1 className="text-lg font-semibold">Select Access Level</h1>
+        </div>
+
+        {/* Desktop Header */}
+        <div 
+          className="hidden md:flex absolute top-0 left-0 p-8 items-center cursor-pointer hover:opacity-80 transition-opacity" 
+          onClick={() => router.push("/")}
+        >
+          <div className="w-5 h-5 bg-[#006699] rounded-full mr-3"></div>
+          <span className="text-[#006699] font-bold tracking-wider text-xl">BRAND</span>
         </div>
 
         <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8">
@@ -150,7 +161,10 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Left Panel (Desktop Only) */}
       <div className="hidden md:flex md:w-1/2 bg-[#006699] text-white p-12 flex-col justify-between">
-        <div className="flex items-center space-x-2">
+        <div 
+          className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => router.push("/")}
+        >
           <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#006699] font-bold">
             <span className="text-xs">DW</span>
           </div>

@@ -99,7 +99,7 @@ export default function Home() {
     localStorage.removeItem("token");
     setUserRole(null);
     setUserId(null);
-    router.push("/login");
+    router.push("/");
   };
 
   if (loading) {
@@ -387,13 +387,71 @@ export default function Home() {
           </p>
         </div>
       </header>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Please login to view and book concerts.</h2>
-        <Link href="/login">
-          <button className="bg-[#006699] text-white px-8 py-3 rounded-full font-medium hover:bg-[#005580] transition-colors">
-            Go to Login
-          </button>
-        </Link>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="flex justify-between items-end mb-8">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Upcoming Concerts</h2>
+            <p className="text-gray-500 mt-1">Select a concert to book your ticket</p>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto space-y-6">
+          {concerts.length === 0 ? (
+            <div className="text-center py-12 text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
+              No concerts available at the moment.
+            </div>
+          ) : (
+            concerts.map((concert) => {
+              const activeReservations = concert.reservations?.filter(r => r.action === 'Reserve').length || 0;
+              const isFullyBooked = activeReservations >= concert.totalSeats;
+              const availableSeats = concert.totalSeats - activeReservations;
+
+              return (
+                <div key={concert.id} className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col hover:shadow-md transition-shadow">
+                  <div className="flex justify-between items-start border-b border-gray-100 pb-4 mb-4">
+                    <h3 className="text-xl font-semibold text-[#1ea1f2]">{concert.name}</h3>
+                    {isFullyBooked ? (
+                      <span className="inline-flex items-center bg-red-50 text-red-700 text-[10px] font-bold px-2 py-1 rounded uppercase shrink-0">
+                        Sold Out
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center bg-green-50 text-green-700 text-[10px] font-bold px-2 py-1 rounded uppercase shrink-0">
+                        Available
+                      </span>
+                    )}
+                  </div>
+                  
+                  <p className="text-gray-700 text-sm mb-6 leading-relaxed">
+                    {concert.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Users className="w-5 h-5 mr-2 text-gray-400" />
+                      <span className={isFullyBooked ? "text-red-500 font-medium" : "text-gray-700 font-medium"}>
+                        {availableSeats}
+                      </span>
+                      <span className="ml-1">/ {concert.totalSeats} seats left</span>
+                    </div>
+                    
+                    <Link href={`/login`} className="block">
+                      <button 
+                        disabled={isFullyBooked}
+                        className={`px-8 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                          isFullyBooked 
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
+                            : "bg-[#1ea1f2] text-white hover:bg-blue-500"
+                        }`}
+                      >
+                        {isFullyBooked ? "Sold Out" : "Reserve"}
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
       </main>
     </div>
   );

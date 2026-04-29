@@ -27,6 +27,10 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/dw_test?schema=public
       JWT_SECRET: next_nest_assignment
       PORT: 3001
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: sh -c "npx prisma generate && npm run start:dev"
     ports:
       - "3001:3001"
     depends_on:
@@ -41,6 +45,11 @@ services:
     restart: unless-stopped
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:3001
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
     ports:
       - "3000:3000"
     depends_on:

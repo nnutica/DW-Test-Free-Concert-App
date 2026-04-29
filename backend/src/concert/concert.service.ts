@@ -15,4 +15,12 @@ export class ConcertService {
     if (!concert) throw new NotFoundException('Concert not found');
     return this.prisma.concert.delete({ where: { id } });
   }
+
+  findAll() {
+    return this.prisma.concert.findMany({
+      include: {
+        reservations: true, // Check List Reservations if Full to Notice Admin
+      },
+    });
+  }
 }

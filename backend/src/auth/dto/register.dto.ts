@@ -9,6 +9,9 @@ export class RegisterDto {
   @MinLength(6)
   password: string;
 
+  @IsString()
+  fullName: string;
+
   @IsEnum(Role)
   role: Role;
 }

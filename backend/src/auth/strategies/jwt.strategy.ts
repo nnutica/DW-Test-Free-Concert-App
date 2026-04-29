@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   /* payload จาก JWT → req.user */
-  async validate(payload: { sub: number; email: string; role: string }) {
+  async validate(payload: { sub: string; email: string; role: string }) {
     return { id: payload.sub, email: payload.email, role: payload.role };
   }
 }

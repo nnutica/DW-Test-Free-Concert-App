@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  password     String
+  role         Role          @default(USER)
+  reservations Reservation[]
+}
+
+model Concert {
+  id           Int           @id @default(autoincrement())
+  name         String
+  description  String
+  totalSeats   Int
+  reservations Reservation[]
+}
+
+model Reservation {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  concertId Int
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  concert Concert @relation(fields: [concertId], references: [id])
+
+  /**
+   * ป้องกันจองซ้ำ
+   */
+  @@unique([userId, concertId])
+}

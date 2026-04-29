@@ -139,21 +139,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Mobile Bottom Nav */}
-        <div className="md:hidden bg-white border-t border-gray-200 flex justify-around p-3 pb-safe">
-          <div className="flex flex-col items-center text-[#006699]">
-            <Home className="w-6 h-6" />
-            <span className="text-xs mt-1">Home</span>
-          </div>
-          <div className="flex flex-col items-center text-gray-400">
-            <Calendar className="w-6 h-6" />
-            <span className="text-xs mt-1">Bookings</span>
-          </div>
-          <div className="flex flex-col items-center text-gray-400">
-            <UserCircle className="w-6 h-6" />
-            <span className="text-xs mt-1">Profile</span>
-          </div>
-        </div>
       </div>
     );
   }

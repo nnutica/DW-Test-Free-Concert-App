@@ -1,8 +1,17 @@
 import axios from 'axios';
 
+// ดึง Base URL แบบไดนามิก เพื่อให้เทสข้ามเครื่อง (มือถือ) ได้
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    // ถ้าเปิดจากมือถือ (192.168.x.x) ให้ยิงไปที่ IP นั้น Port 3001
+    return `http://${window.location.hostname}:3001`;
+  }
+  return 'http://localhost:3001'; // Default สำหรับ Server-side หรือเปิดในเครื่อง
+};
+
 // สร้าง Axios instance
 export const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: getBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
